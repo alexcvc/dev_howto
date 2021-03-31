@@ -15,13 +15,13 @@ The first thing you want to do is to add a Git submodule to your main project.
 In order to add a Git submodule, use the “git submodule add” command and specify the URL of the Git remote repository to be included as a submodule.
 Optionally, you can also specify the target directory (it will be included in a directory named as the remote repository name if not provided)
 
-```
+```shell
 $ git submodule add <remote_url> <destination_folder>
 ```
 
 When adding a Git submodule, your submodule will be staged. As a consequence, you will need to commit your submodule by using the “git commit” command.
 
-```
+```shell
 $ git commit -m "Added the submodule to the project."
 $ git push
 ```
@@ -29,7 +29,7 @@ $ git push
 As an example, let’s pretend that you want to add the “project” repository as a submodule on your project into a folder named “vendors”.
 To add “project” as a submodule, you would run the following command at the root of your repository
 
-```
+```shell
 $ git submodule add https://github.com/project/project.git vendors
 
 Cloning into '/home/user/main/project'...
@@ -53,7 +53,7 @@ Whenever you are cloning a Git repository having submodules, you need to execute
 If you don’t execute this command, you will fetch the submodule folder, but you won’t have any content in it.
 To pull a Git submodule, use the “git submodule update” command with the “–init” and the “–recursive” options.
 
-```
+```shell
 $ git submodule update --init --recursive
 ```
 
@@ -61,7 +61,7 @@ Going back to the example we described before : let’s pretend that we are in a
 In its Git repository, our colleague first starts by cloning the repository, however, it is not cloning the content of the Git submodule.
 To update its own Git configuration, it has to execute the “git submodule update” command.
 
-```
+```shell
 $ git submodule update --init --recursive
 
 Submodule 'vendors' (https://github.com/project/project.git) registered for path 'vendors'
@@ -78,7 +78,7 @@ The submodule is always set to have its HEAD detached at a given commit by defau
 In some cases, you are not pulling a Git submodule but you are simply look to update your existing Git submodule in the project.
 In order to update an existing Git submodule, you need to execute the “git submodule update” with the “–remote” and the “–merge” option.
 
-```
+```shell
 $ git submodule update --remote --merge
 ```
 
@@ -86,7 +86,7 @@ Using the “–remote” command, you will be able to update your existing Git 
 When using this command, your detached HEAD will be updated to the newest commit in the submodule repository.
 Given the example that we used before, when updating the submodule, we would get the following output
 
-```
+```shell
 $ git submodule update --remote --merge
 
 Updating 43d0813..93360a2
@@ -103,14 +103,14 @@ First, you may want to fetch new commits that were done in the submodule reposit
 Let’s say for example that you want to fetch two new commits that were added to the submodule repository.
 To fetch new commits done in the submodule repository, head into your submodule folder and run the “git fetch” command first (you will get the new submodule commits)
 
-```
+```shell
 $ cd repository/submodule
 $ git fetch
 ```
 
 Now, if you run the “git log” command again, you will be able to see the new commits you are looking to integrate.
 
-```
+```shell
 $ git log --oneline origin/master -3
 
 93360a2 (origin/master, origin/HEAD) Second commit
@@ -119,7 +119,7 @@ $ git log --oneline origin/master -3
 ```
 Now, in order for your submodule to be in-line with the newest commits, you can run the “git checkout” command and specify the SHA that you want to update your submodule to (in this case 93360a2)
 
-```
+```shell
 $ git checkout -q 93360a2
 ```
 
@@ -127,7 +127,7 @@ Great! Your HEAD is now aligned with the newest commits from the submodule repos
 
 You can now go back to your main repository and commit your changes for other developers to fetch those new commits.
 
-```
+```shell
 $ cd repository
 $ git add .
 $ git commit -m "Added new commits from the submodule repository"
@@ -139,7 +139,7 @@ $ git push
 In this section, we are going to see how you can effectively remove a Git submodule from your repository.
 In order to remove a Git submodule from your repository, use the “git submodule deinit” command followed by the “git rm” command and specify the name of the submodule folder.
 
-```
+```shell
 $ git submodule deinit <submodule>
 $ git rm <submodule>
 ```
@@ -157,13 +157,13 @@ Luckily for you, there are configuration properties that you can tweak in order 
 
 In order to have a submodule summary when executing “git status”, execute the “git config” command and add the “status.submoduleSummary” option.
 
-```
+```shell
 $ git config --global status.submoduleSummary true
 ```
 
 As a consequence, you will be presented with more information when executing “git status” commands.
 
-```
+```shell
 $ git status
 On branch master
 Your branch is up-to-date with 'origin/master'.
@@ -184,13 +184,13 @@ If you configured your Git to have the submodule summary as explained in the pre
 However, in some cases, you want to get more information about the commits that might have been done in your submodules folder.
 For the “git diff” command to have detailed information about your submodules, use the “git config” command with the “diff.submodule” parameter set to true.
 
-```
+```shell
 $ git config --global diff.submodule log
 ```
 
 Now, whenever you are executing the “git diff” command, you will be able to see the commits that were done in the submodules folder.
 
-```
+```shell
 $ git diff
 
 Submodule <submodule> 0000000...ae14a2:
