@@ -33,7 +33,24 @@ See 'man hosts.allow' for examples on the syntax. But in general, specifying onl
 
 Edit the /etc/exports file, which lists the server's filesystems to export over NFS to client machines. And create the NFS table with "exportfs -a". The following example shows the addition of a line which adds the path "/example", for access by any machine on the local network (here 192.168.1.*).
 
-    $ echo "/example 192.168.1.0/255.255.255.0(rw,no_root_squash,subtree_check)" >> /etc/exports
+    # /etc/exports: the access control list for filesystems which may be exported
+    #               to NFS clients.  See exports(5).
+    #
+    # Example for NFSv2 and NFSv3:
+    # /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+    #
+    # Example for NFSv4:
+    # /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+    # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+    #
+    
+    /srv/tftp                172.16.0.0/16(rw,no_root_squash,subtree_check) 172.15.0.0/16(rw,no_root_squash,subtree_check) 172.17.0.0/16(rw,no_root_squash,subtree_check) 172.18.0.0/16(rw,no_root_squash,subtree_check) 192.168.1.0/24(rw,no_root_squash,subtree_check)
+    /srv/nfs                 172.16.0.0/16(rw,no_root_squash,subtree_check) 172.15.0.0/16(rw,no_root_squash,subtree_check) 172.17.0.0/16(rw,no_root_squash,subtree_check) 172.18.0.0/16(rw,no_root_squash,subtree_check) 192.168.1.0/24(rw,no_root_squash,subtree_check)
+    /opt                     172.16.0.0/16(rw,sync,no_subtree_check) 172.15.0.0/16(rw,sync,no_subtree_check) 172.17.0.0/16(rw,sync,no_subtree_check) 172.18.0.0/16(rw,sync,no_subtree_check) 192.168.1.0/24(rw,sync,no_subtree_check)
+    /home                    172.16.0.0/16(rw,sync,no_subtree_check) 172.15.0.0/16(rw,sync,no_subtree_check) 172.17.0.0/16(rw,sync,no_subtree_check) 172.18.0.0/16(rw,sync,no_subtree_check) 192.168.1.0/24(rw,sync,no_subtree_check)
+
+Then new export shared folders:
+
     $ exportfs -a
     $ /etc/init.d/nfs-kernel-server reload
 
