@@ -6,3 +6,5 @@
   https://markontech.com/linux/setup-nfs-server-on-debian/  
 
   https://www.how2shout.com/linux/install-ifconfigon-debian-11-or-10-if-command-not-found/
+  
+  https://trendoceans.com/how-to-install-cmake-on-debian-10-11/
