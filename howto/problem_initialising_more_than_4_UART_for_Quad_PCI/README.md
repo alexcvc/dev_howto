@@ -1,14 +1,37 @@
-# Header 1
--------------------
+# Problem initialising more than 4 serial ports
 
+Using a extended board which has 2-8 serial devices, the kernel improperly initialises the serial hardware,
+I can tell, none of the ports work properly with the default configuration.
+
+## The resolution
+
+The resolution turns out to be pretty simple (at least for this board, most likely others too). 
+Simply set the number of ports to initialise to be enough for all the hardware: for this board, set 8250.nr_uarts=8 on the boot command line. 
+After which the kernels sets up the ports exactly as expected and furthermore, they work as expected also.
+
+For those that don't regularly change the grub configuration, the mechanics are:
+
+Edit `/etc/default/grub` and add `8250.nr_uarts=8` to the line starting GRUB_CMDLINE_LINUX=... 
+Run 
+
+```
+grub2-mkconfig -o /boot/grub2/grub.cfg
+reboot
+```
+## Post
 
 January 26th, 2012, 06:39 AM
 Digging up an older thread, but this was a top result on Google for this problem.
 
-What's happening is that the Debian kernel is compiled by default with only 4 serial ports enabled. See http://www.debian-administration.org/users/lauri/weblog/1 The hard way to fix this would be to recompile, changing the config parameters:
+What's happening is that the Debian kernel is compiled by default with only 4 serial ports enabled. 
+See http://www.debian-administration.org/users/lauri/weblog/1 
+The hard way to fix this would be to recompile, changing the config parameters:
 
+```
 CONFIG_SERIAL_8250_NR_UARTS=32
 CONFIG_SERIAL_8250_RUNTIME_UARTS=4
+```
+
 Recompiling would let you set the parameters in the kernel itself (and maybe have more than 32 serial ports?).
 
 The easy way to fix this is (as root) to edit /etc/default/grub and append " 8250.nr_uarts=8" (without quotes) to the end of the line "GRUB_CMDLINE_LINUX_DEFAULT=". It might then look like :
