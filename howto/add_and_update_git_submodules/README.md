@@ -198,9 +198,3 @@ Submodule <submodule> 0000000...ae14a2:
   > Submodule commit n°2
 ```
 
-## Conclusion
-
-In this tutorial, you learnt what submodules are and how you can use them in order to have external repositories in your main project repository.
-You also learnt that it is possible to add and update Git submodules using the dedicated “git submodule” commands : “git submodule add” and “git submodule update“.
-Finally, you have seen that it is possible to tweak your Git configuration in order to get more information about your Git repository.
-If you are interested about Git or about software engineering in general, we have a complete section dedicated to it on the website, so make sure to check it out!
