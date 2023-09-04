@@ -129,3 +129,31 @@ You should see this
     100003    2   udp   2049  nfs
     100003    3   udp   2049  nfs
 
+
+# Kernel 6
+
+From Ubuntu 22.04, the hack of RPCNFSDCOUNT/RPCNFSDOPTS doesn't work any more (because /lib/systemd/scripts/nfs-utils_env.sh has been removed, which used the RPCNFSDCOUNT/RPCNFSDOPTS variables).
+
+Do this instead:
+
+```shell
+echo -e "[nfsd]\nudp=y\nvers2=y" | sudo tee /etc/nfs.conf.d/local.conf
+sudo systemctl restart nfs-server.service
+```
+
+How did I found out this configuration:
+
+```shell
+    systemctl cat nfs-server.service shows nfs-server.service executes rpc.nfsd (ExecStart=/usr/sbin/rpc.nfsd)
+    man rpc.nfsd shows the configuration file is located at /etc/nfs.conf
+    man nfs.conf shows the format of the configuration file, and says /etc/nfs.conf.d/*.conf is also valid configuration files
+```
+
+You can confirm that the configuration is applied with these commands:
+
+```shell
+    nfsconf --dump
+    rpcinfo -s
+    rpcinfo -p
+    sudo cat /proc/fs/nfsd/versions
+```
