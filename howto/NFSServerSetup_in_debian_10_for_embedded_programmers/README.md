@@ -216,11 +216,9 @@ sudo systemctl restart nfs-server.service
 
 How did I found out this configuration:
 
-```shell
-    systemctl cat nfs-server.service shows nfs-server.service executes rpc.nfsd (ExecStart=/usr/sbin/rpc.nfsd)
-    man rpc.nfsd shows the configuration file is located at /etc/nfs.conf
-    man nfs.conf shows the format of the configuration file, and says /etc/nfs.conf.d/*.conf is also valid configuration files
-```
+1. `systemctl cat nfs-server.service` - shows nfs-server.service executes rpc.nfsd (ExecStart=/usr/sbin/rpc.nfsd)
+2. `man rpc.nfsd` shows the configuration file is located at /etc/nfs.conf
+3. `man nfs.conf` shows the format of the configuration file, and says /etc/nfs.conf.d/*.conf is also valid configuration files
 
 You can confirm that the configuration is applied with these commands:
 
