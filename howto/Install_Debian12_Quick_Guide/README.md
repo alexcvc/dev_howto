@@ -1,6 +1,9 @@
-# Prepare
+# Installation from USB (netinst)
 
-After installation  from USB (netinst)
+**Important in case of LSA MegaRAID SAS 9440-8i**
+
+  All partitions that will be used in the future must be mounted to target directories during the installation.
+  Otherwise, if you mount RAID discs later, Debian 12 may hang on the RAID discs.
 
 ## To enable sudo on a user account on Debian
 
