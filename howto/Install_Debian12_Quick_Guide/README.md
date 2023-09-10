@@ -43,4 +43,20 @@ exit
 sudo ls
 ```
 
+## Install general tools
+
+```
+sudo apt-get install vim mc htop atop git tig tilix 
+```
+
+## Set permission for workbench folders
+
+```
+sudo chmod 777 /opt/ /srv/
+cd /home
+sudo chmod 777 backup/ codebase/ deploy/ doc/ files/ main/ wsudo work/
+sudo mkdir /home/tmp ; sudo chmod 777 /home/tmp 
+```
+
+
 
