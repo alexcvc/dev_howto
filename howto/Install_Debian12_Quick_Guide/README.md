@@ -1,4 +1,4 @@
-Install and make your Debian 12 as workbanch
+Install and build your Debian 12 system as your workbench
 ===
 
 ## Install and Setup TFTPD Server
