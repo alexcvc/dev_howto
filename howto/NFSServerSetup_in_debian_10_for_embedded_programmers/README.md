@@ -175,8 +175,6 @@ NEED_GSSD=
 
 ```
 
-
-
 File `/etc/default/nfs-kernel-server` :
 
 ```
@@ -228,3 +226,40 @@ You can confirm that the configuration is applied with these commands:
     rpcinfo -p
     sudo cat /proc/fs/nfsd/versions
 ```
+
+Example `/etc/default/nfs-kernel-server` :
+
+```
+cat /etc/default/nfs-kernel-server
+
+# Number of servers to start up
+RPCNFSDCOUNT="8 --nfs-version 2"
+RPCNFSDOPTS="--nfs-version 2,3,4 --debug --syslog"
+
+# Runtime priority of server (see nice(1))
+RPCNFSDPRIORITY=0
+
+# Options for rpc.mountd.
+# If you have a port-based firewall, you might want to set up
+# a fixed port here using the --port option. For more information, 
+# see rpc.mountd(8) or http://wiki.debian.org/SecuringNFS
+# To disable NFSv4 on the server, specify '--no-nfs-version 4' here
+RPCMOUNTDOPTS="--no-nfs-version 4 --manage-gids"
+
+# Do you want to start the svcgssd daemon? It is only required for Kerberos
+# exports. Valid alternatives are "yes" and "no"; the default is "no".
+NEED_SVCGSSD=""
+
+# Options for rpc.svcgssd.
+RPCSVCGSSDOPTS=""
+```
+
+And file `/etc/nfs.conf.d/local.conf`:
+
+```
+[nfsd]
+udp=y
+vers2=y
+```
+
+
