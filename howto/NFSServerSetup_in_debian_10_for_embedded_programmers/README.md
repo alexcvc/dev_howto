@@ -182,12 +182,14 @@ File `/etc/default/nfs-kernel-server` :
 # enable NFSv2
 RPCNFSDCOUNT="8 --nfs-version 2"
 
+RPCNFSDOPTS="--nfs-version 2,3,4 --debug --syslog"
+
 # Runtime priority of server (see nice(1))
 RPCNFSDPRIORITY=0
 
 # Options for rpc.mountd.
 # If you have a port-based firewall, you might want to set up
-# a fixed port here using the --port option. For more information, 
+# a fixed port here using the --port option. For more information,
 # see rpc.mountd(8) or http://wiki.debian.org/SecuringNFS
 # To disable NFSv4 on the server, specify '--no-nfs-version 4' here
 RPCMOUNTDOPTS="--no-nfs-version 4 --manage-gids"
@@ -198,6 +200,7 @@ NEED_SVCGSSD=""
 
 # Options for rpc.svcgssd.
 RPCSVCGSSDOPTS=""
+
 
 ```
 
