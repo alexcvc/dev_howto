@@ -107,14 +107,18 @@ Processing triggers for man-db (2.11.2-2) ...
 
 Edit /etc/default/tftpd-hpa, run:
 
+```
 sudo vim /etc/default/tftpd-hpa
+```
 
 Sample configuration:
 
+```
 TFTP_USERNAME="tftp"
 TFTP_DIRECTORY="/srv/tftp"
 TFTP_ADDRESS="0.0.0.0:69"
 TFTP_OPTIONS="--secure"
+```
 
 How do I start / stop / restart tftpd-hpa server?
 
