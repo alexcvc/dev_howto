@@ -59,7 +59,9 @@ sudo apt-get install vim mc htop atop git tig tilix
 ```
 sudo chmod 777 /opt/ /srv/
 cd /home
-sudo chmod 777 backup/ codebase/ deploy/ doc/ files/ main/ wsudo work/
+sudo cd /home
+sudo mkdir backup/ codebase/ deploy/ doc/ files/ main/ work/
+sudo chmod 777 backup/ codebase/ deploy/ doc/ files/ main/ work/
 sudo mkdir /home/tmp ; sudo chmod 777 /home/tmp 
 ```
 
