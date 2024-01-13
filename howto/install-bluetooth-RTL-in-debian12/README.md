@@ -43,6 +43,8 @@ sudo dmesg | grep -i Bluetooth
 
 https://github.com/Realtek-OpenSource/android_hardware_realtek/tree/rtk1395/bt/rtkbt/Firmware/BT
 
+[RTL.bluetooth.tar.gz](https://github.com/alexcvc/howto_embedded/files/13928162/RTL.bluetooth.tar.gz)
+
 2. Simply create a soft links this:
 
 ```shell
