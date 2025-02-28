@@ -26,9 +26,8 @@ apt-get install sudo
 
 ```
 adduser username sudo
-```
-
 echo "username ALL=(ALL) PASSWD: ALL" > /etc/sudoers.d/username_sudoers
+```
 
 4. Change the default sudo password timeout (and make it either longer or shorter), add the following line at the end of the file and change its value to whatever time (in minutes) you want it to wait for before the timeout.
  
@@ -60,7 +59,9 @@ sudo apt-get install vim mc htop atop git tig tilix
 ```
 sudo chmod 777 /opt/ /srv/
 cd /home
-sudo chmod 777 backup/ codebase/ deploy/ doc/ files/ main/ wsudo work/
+sudo cd /home
+sudo mkdir backup/ codebase/ deploy/ doc/ files/ main/ work/
+sudo chmod 777 backup/ codebase/ deploy/ doc/ files/ main/ work/
 sudo mkdir /home/tmp ; sudo chmod 777 /home/tmp 
 ```
 
@@ -108,14 +109,18 @@ Processing triggers for man-db (2.11.2-2) ...
 
 Edit /etc/default/tftpd-hpa, run:
 
+```
 sudo vim /etc/default/tftpd-hpa
+```
 
 Sample configuration:
 
+```
 TFTP_USERNAME="tftp"
 TFTP_DIRECTORY="/srv/tftp"
 TFTP_ADDRESS="0.0.0.0:69"
 TFTP_OPTIONS="--secure"
+```
 
 How do I start / stop / restart tftpd-hpa server?
 
